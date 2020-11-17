@@ -1,0 +1,194 @@
+20201116 자바스크립트
+
+// map
+
+l = ['adfs', 'fasdfdas', 'afds', 'a']
+	(4) ["adfs", "fasdfdas", "afds", "a"]
+'abc'.length
+	3
+l.map(x => x.length)
+	(4) [4, 8, 4, 1]
+l = ['apple', 'grape', 'orange']
+	(3) ["apple", "grape", "orange"]
+l.map(x => x.length)
+	(3) [5, 5, 6]
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+const boxes = document.querySelectorAll('.box')
+for (item of boxes) {
+    item.style.backgroundColor = 'red'
+}
+	"red"
+for ( item of boxes) {
+    item.innerHTML = '???'
+}
+	"???"
+for (item of boxes) {
+    item.style.border = '5px solid black'
+}
+	"5px solid black"
+document.querySelectorAll('div')
+	NodeList(3) [div.box.b1, div.box.b2, div.box.b3]
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+// tag 이름으로 찾기
+
+document.getElementsByTagName('div')
+HTMLCollection(3) [div.box.b1, div.box.b2, div.box.b3]
+document.querySelectorAll('div')
+NodeList(3) [div.box.b1, div.box.b2, div.box.b3]
+const b = document.querySelectorAll('div')
+undefined
+for (item of b) {
+    console.log(item) }
+VM2520:2 <div class=​"box b1">​box1​</div>​
+VM2520:2 <div class=​"box b2">​box2​</div>​
+VM2520:2 <div class=​"box b3">​box3​</div>​
+undefined
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+// 2.3. appendChild
+
+document.createElement('div')
+<div>​</div>​
+const newBox = document.createElement('div')
+undefined
+newBox.classList.add('box')
+undefined
+newBox
+<div class=​"box">​</div>​
+newBox.innerText = '~_~'
+"~_~"
+document.body.appendChild(newBox)
+<div class=​"box">​~_~​</div>​
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+// 이벤트 핸들러 :: 마우스 이벤트
+
+<body>
+        <script>
+            function handleClick() {
+                alert('클릭했음');
+            }
+        </script>
+        <div onclick="handleClick()" class="box"></div>
+    </body>
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+// 이벤트 keypress
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>브라우저 제어하기</title>
+        <style>
+            .box {
+                width: 100px;
+                height: 100px;
+                background-color: cornflowerblue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="boxbox" class="box">._.</div>
+        <script>
+            const box = document.querySelector('#boxbox')
+            document.body.addEventListener('keypress', e => {
+                const currentValue = box.innerText
+                box.innerText = currentValue + e.key
+            })
+        </script>
+    </body>
+</html>
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+// box 움직이기 (x y축 값 조정해서)
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>브라우저 제어하기</title>
+        <style>
+            .box {
+                width: 100px;
+                height: 100px;
+                background-color: cornflowerblue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="boxbox" class="box">._.</div>
+        <script>
+            const box = document.querySelector('#boxbox')
+            let x = 0
+            let y = 0
+            document.body.addEventListener('keydown', e => {
+                switch(e.key) {
+                    case 'ArrowUp':
+                        y -= 5
+                        break;
+                    case 'ArrowDown':
+                        y += 5
+                        break;
+                    case 'ArrowLeft':
+                        x -= 5
+                        break;
+                    case 'ArrowRight':
+                        x += 5
+                        break;
+                }
+                box.style.transform = `translate3d(${x}px, ${y}px, 0)`
+            })
+        </script>
+    </body>
+</html>
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+// 이벤트 버블링 
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>브라우저 제어하기</title>
+        <style>
+            div {
+                width: 100px;
+                height: 100px;
+                background-color: cornflowerblue;
+                cursor: pointer;
+            }
+
+            p {
+                background-color: crimson;
+                cursor: pointer;
+            }
+
+            span {
+                background-color: darkgoldenrod;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="d">
+            <p id="p">
+                <span id="s">내용</span>같은거
+            </p>
+        </div>
+        <script>
+            const d = document.getElementById('d')
+            const p = document.getElementById('p')
+            const s = document.getElementById('s')
+
+            d.addEventListener('click', e => {
+                console.log('div 누름')
+            })
+
+            p.addEventListener('click', e => {
+                console.log('paragraph 누름')
+            })
+
+            s.addEventListener('click', e => {
+                e.stopPropagation()
+                console.log('span 누름')
+            })
+        </script>
+
+    </body>
+</html>
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
