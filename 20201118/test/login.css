@@ -1,0 +1,89 @@
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+:root {
+    --color-login-form-background: #f1f1f1;
+    --color-login-btn: #ebebcc;
+    --color-login-btn-hover: #bde0af;
+}
+
+body {
+    background-color: var(--color-login-form-background);
+    font-family: 'Poppins', sans-serif;  
+    margin: 0 auto;
+    max-width: 512px;
+}
+
+.status-bar{
+    background-color: #ffffff;
+    height: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.welcome-header {
+    margin: 90px 0px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.welcome-header__title {
+    margin-bottom: 20px;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.welcome-header__text {
+    width: 60%;
+    opacity: 0.7;
+}
+  
+#login-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 30px;
+}
+  
+#login-form input {
+    border: 1px solid #eaecef;
+    padding: 15px 0px;
+    font-size: 18px;
+    margin-bottom: 25px;
+    text-indent: 0.5rem;
+}
+  
+#login-form input:not([type="submit"]) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    transition: border-color 0.3s ease-in-out;
+}
+  
+#login-form input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+  
+#login-form input[type="submit"] {
+    cursor: pointer;
+    text-decoration: none;
+    padding: 20px 0px;
+    border-radius: 7px;
+    background-color: var(--color-login-btn);
+}
+
+#login-form input[type="submit"]:hover {
+    background-color: var(--color-login-btn-hover);
+    cursor: pointer;
+}
+  
+#login-form a {
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    font-size: 13px;
+}
