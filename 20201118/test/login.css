@@ -15,18 +15,11 @@ body {
     font-family: 'Poppins', sans-serif;  
     margin: 0 auto;
     max-width: 512px;
-}
-
-.status-bar{
-    background-color: #ffffff;
-    height: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    font-weight: 500;
+    height: 140vh;
 }
 
 .welcome-header {
-    margin: 90px 0px;
+    margin: 200px 0;
     text-align: center;
     display: flex;
     flex-direction: column;
