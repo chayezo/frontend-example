@@ -55,8 +55,9 @@ public class BufferedReaderExample {
                 // 헤더 끝을 명시해주기 위해 CRLF를 넣음.
                 out.write(convertStringToBytes("\r\n"));
 
-                
+
                 // 3.3. 바디
+                try (final FileInputStream)
 
 
             }
