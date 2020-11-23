@@ -29,7 +29,7 @@ public class staticFileApplication {
         final String substring = fileName.substring(1);
         System.out.println(substring);
         final Path fileAbsolutePath = path.resolve(substring);
-        System.out.println(fileAbsolutePath.to String());
+        System.out.println(fileAbsolutePath.toString());
     }
     
     private static String getAbsolutePath(String uri) {
