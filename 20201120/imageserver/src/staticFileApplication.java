@@ -13,7 +13,7 @@ import java.nio.file.Paths;
  * 4. 파일 길이 추출
  * 5. 파일 byte 배열로 변환
  */
-public class StaticFileApplication {
+public class staticFileApplication {
 
     private static final int PORT = 12345;
     private static final String ROOT_PATH = "C:\\Users\\user1\\Desktop\\webroot";
