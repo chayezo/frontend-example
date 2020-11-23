@@ -24,41 +24,39 @@ public class BufferedReaderExample {
         try {
             // 1.
             final ServerSocket serverSocket = new ServerSocket(PORT);
+            System.out.println("접속 대기 중 ..");
             Socket socket;
             while ((socket = serverSocket.accept()) != null) {
+                System.out.println("누군가 접속함 !");
                 final InputStream in = socket.getInputStream();
                 final InputStreamReader isr = new InputStreamReader(in);
                 final BufferedReader br = new BufferedReader(isr);
 
                 // 2.
                 // br.readLine() 요청 라인, 요청 헤더. 문자열 " " 만날 때 까지 읽기.
+                final String requestLine = br.readLine();
                 String line;
-                while (!"".equals.((line = br.readLine()))) {
+                while (!"".equals(line = br.readLine())) {
                     System.out.println(line);
 
                 }
 
                 // 3. html
                 final OutputStream out = socket.getOutputStream();
-
-                // 3.1. 상태 라인
-                final String statusLine = "HTTP/1.1 200 OK";
-                out.write(converStringToBytes(statusLine));
-
-                // 3.2. 헤더
-                final String contentType = "Content-Type: text/html;";
+                // 3.1. 응답 헤더
+                final String contentType = "Content-Type: text/html; charset=UTF-8 \r\n";
                 // Content-Type: text/html;
                 out.write(convertStringToBytes(contentType));
                 // Content-Length: 160
-                final String contentLength = "Content-Length: " + html.length();
+                final String contentLength = "Content-Length: " + html.length() + "\r\n";
                 out.write(convertStringToBytes(contentLength));
                 // 헤더 끝을 명시해주기 위해 CRLF를 넣음.
                 out.write(convertStringToBytes("\r\n"));
 
 
-                // 3.3. 바디
-                try (final FileInputStream)
-
+                // 3.2. 응답 바디
+                out.write(convertStringToBytes(html));
+                out.flush();
 
             }
         } catch (IOException e) {
@@ -66,8 +64,8 @@ public class BufferedReaderExample {
         }
     }
 
-    private static byte[] convertStringToBytes(String statusLine) {
-        return statusLine.getBytes(StandardCharsets.UTF_8);
+    private static byte[] convertStringToBytes(String strToConvert) {
+        return strToConvert.getBytes(StandardCharsets.UTF_8);
     }
     
 }
